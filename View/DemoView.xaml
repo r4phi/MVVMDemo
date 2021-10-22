@@ -4,9 +4,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:VMMVDemo.View"
+      xmlns:src="clr-namespace:VMMVDemo.ViewModel"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="DemoView">
+
+    <Page.DataContext>
+        <src:DemoView />
+    </Page.DataContext>
 
     <Grid>
 		<Grid.RowDefinitions>
@@ -34,6 +39,7 @@
 			Grid.Column="1"
 			FontSize="40"
 			VerticalContentAlignment="Center"
+            Text="{Binding Path=Address.Name, UpdateSourceTrigger=PropertyChanged}"
 		/>
 
 		<Label 
@@ -49,6 +55,7 @@
 			Grid.Column="1"
 			FontSize="40"
 			VerticalContentAlignment="Center"
+            Text="{Binding Path=Address.Street, UpdateSourceTrigger=PropertyChanged}"
 		/>
 
 		<Label 
@@ -63,10 +70,12 @@
 			<TextBox
 			FontSize="40"
 			VerticalContentAlignment="Center"
+            Text="{Binding Path=Address.CipCode, UpdateSourceTrigger=PropertyChanged}"
 			/>
 			<TextBox
 			FontSize="40"
 			VerticalContentAlignment="Center"
+            Text="{Binding Path=Address.City, UpdateSourceTrigger=PropertyChanged}"
 			/>
 		</UniformGrid>
 		
@@ -81,10 +90,13 @@
 		<TextBlock 
 			Grid.Row="3" 
 		    Grid.Column="1"
+            Background="CadetBlue"
+            FontSize="25"
+            Text="{Binding Path=Address.Address}"
 		/>
 		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
-			<Button Content="Löschen" FontSize="40"/>
-			<Button Content="Erzeugen" FontSize="40"/>
+			<Button Content="Löschen" FontSize="40" Command="{Binding Path=DeleteCommand}"/>
+			<Button Content="Erzeugen" FontSize="40" Command="{Binding Path=AddressCommand}"/>
 		</StackPanel>
 	</Grid>
 </Page>
